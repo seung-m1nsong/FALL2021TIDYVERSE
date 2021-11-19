@@ -69,7 +69,8 @@ Demonstrate how to use the Purrr map functions to manipulate nested dataframes a
 
 
 Revision/Addition Description and Link:
-
+Extended William Aiken's dplyr vignette to demonstrate summarise() as a useful function to in combination with case_when(). 
+https://github.com/acatlin/FALL2021TIDYVERSE/pull/35
 
 # Charles U
 Initial Description and Link:
