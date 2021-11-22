@@ -1,0 +1,221 @@
+---
+title: "Data 607 Tidyverse CREATE Assignment"
+author: "Leticia Salazar"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: united
+    highlight: pygments
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Objective:
+#### Your task here is to Create an Example.  Using one or more TidyVerse packages, and any dataset from fivethirtyeight.com or Kaggle, create a programming sample “vignette” that demonstrates how to use one or more of the capabilities of the selected TidyVerse package with your selected dataset.
+
+#### I am using a data set from [Kaggle.com](https://www.kaggle.com/johnsmith88/heart-disease-dataset) called Heart Disease Dataset. I have used this data set before but with Python [Care For Your Heart](https://letisalbal.github.io/Final-Project/). While there are plenty of Tidyverse packages to use I will be using 'dplyr', 'tidyr' and 'ggplot2' to demonstrate how to explore data sets in a simple but quick form.
+
+### Description of the Data set:
+
+#### This data set includes dates from 1988 from four different countries: Cleveland, Hungary, Switzerland and Long Beach Virginia. Below is a description of the columns:
+
+Columns                             | Description
+------------------------------------|------------------------------------------
+age                                 | ranges from mid-20's to late 70's
+sex                                 | 1 = male; 0 = female
+chest pain type                     | 4 value types from 0 - 3
+resting blood pressure              | in mm Hg
+serum cholesterol                   | in mg/dl
+fasting blood sugar (> 120 mg/dl)   | 1 = true; 0 = false
+resting electrocardiograph results  | values 0, 1, 2
+thalach                             | maximum heart rate achieved
+exercise induced angina             | 1 = yes; 0 = no
+oldpeak                             | ST depression induced by exercise relative to rest
+slope                               | peak exercise ST segment
+ca                                  | number of major vessels (0 - 3) colored by fluoroscopy
+thal                                | 1 = normal; 2 = fixed defect; 3 = reversible defect
+target                              | presence of heart disease in the patient: 0 = no disease; 1 = disease
+
+### Install packages and load libraries:
+
+```{r}
+# load libraries needed
+library("tidyverse")
+library("dplyr")
+library("tidyr")
+library("ggplot2")
+library("hrbrthemes")
+
+# install packages if not already
+# install.packages("tidyverse")
+# install.packages("dplyr")
+# install.packages("tidyr")
+# install.packages("ggplot2")
+# hrbrthemes::import_roboto_condensed()
+```
+
+
+### Load file into R:
+
+```{r}
+# load csv file
+heart_disease <- read.csv("https://raw.githubusercontent.com/letisalba/Data-607/main/Tidyverse/heart.csv", header = TRUE, na = ",")
+head(heart_disease, n = 4) # by adding n = followed by any number you can select how many rows are to display
+```
+
+
+### Data Exploration:
+
+#### With the 'glimpse' function you have an overview of the columns and rows of the data. Within this data set we have 1,025 rows and 14 columns. Most columns are integer while column 'oldpeak' is double class since it has a decimal point.
+
+```{r}
+# glimpse function
+glimpse(heart_disease)
+```
+
+
+#### The 'summary' function gives futher detail about the data such as minimum, maximum, mean, median and IQR for each column or you can do individual columns as well.
+
+```{r}
+# summary function for whole data set 
+summary(heart_disease)
+```
+
+
+```{r}
+# summary function for particular columns
+summary(heart_disease$chol)
+```
+
+
+#### Checking for NA or missing values is crutial to assure accuracy in the data. By using colSums(is.na(df)) function you can check if there are any NA values in the data set.
+
+```{r}
+# checking for any NA values in columns
+colSums(is.na(heart_disease))
+```
+
+
+#### The 'colnames' function brings up the names of your columns in your data set
+
+```{r}
+# get column names
+colnames(heart_disease)
+```
+
+
+### Data Wrangling:
+
+#### Using the 'names' function you can rename your whole data set 
+
+```{r}
+# rename columns in data set
+names(heart_disease) <- c('Age', 'Gender', 'Chest_Pain_Type', 'Resting_Blood_Pressure', 'Cholesterol', 'Fasting_Blood_Sugar', 'Resting_ECG', 'Thalach', 'Exercise_Induced_Angina', 'Oldpeak', 'Slope', 'Num_Major_Vessels', 'Thalassemia', 'Target')
+
+# rename one column in data set
+# names(heart_disease)[1] <- 'Age' # [1] the number in the bracket is the column number you would like to change
+
+head(heart_disease, n = 2)
+```
+
+
+```{r}
+# replace gender values 1 = Male and 0 = Female; Fasting_blood_sugar values 1 = True and 0 = False; Exercise_Induced_Angina values 1 = Yes and 0 = No; Thalassemia values 0 = Normal, 1 = Fixed Defect and 2 = Reversible Defect; and Target values 0 = No Disease and 1 = Disease
+
+heart <- heart_disease %>% 
+  mutate(Gender = replace(Gender, Gender == 1, 'Male')) %>%   
+  mutate(Gender = replace(Gender, Gender == 0, 'Female')) %>% 
+  
+  mutate(Fasting_Blood_Sugar = replace(Fasting_Blood_Sugar, Fasting_Blood_Sugar == 1, 'True')) %>%   
+  mutate(Fasting_Blood_Sugar = replace(Fasting_Blood_Sugar, Fasting_Blood_Sugar == 0, 'False')) %>% 
+  
+  mutate(Exercise_Induced_Angina = replace(Exercise_Induced_Angina, Exercise_Induced_Angina == 1, 'Yes')) %>% 
+  mutate(Exercise_Induced_Angina = replace(Exercise_Induced_Angina, Exercise_Induced_Angina == 0, 'No')) %>% 
+  
+  mutate(Thalassemia = replace(Thalassemia, Thalassemia == 1, 'Normal')) %>% 
+  mutate(Thalassemia = replace(Thalassemia, Thalassemia == 2, 'Fixed Defect')) %>% 
+  mutate(Thalassemia = replace(Thalassemia, Thalassemia == 3, 'Reversible Defect')) %>% 
+  
+  mutate(Target = replace(Target, Target == 0, 'No Disease')) %>% 
+  mutate(Target = replace(Target, Target == 1, 'Disease'))
+
+head(heart, n = 4)
+```
+
+
+### Data Analysis:
+
+#### When it comes to graphing I like to use [r-graph-gallery](https://www.r-graph-gallery.com/index.html) for my graphing selection.
+
+
+#### Graph 1 shows the range of ages in this data set that start from mid-20's to late 70's. Majority of the population is centered around the ages of 50's - 60's.
+```{r}
+# Age Analysis histogram
+
+age_histogram <- heart %>% 
+  ggplot(aes(x = Age)) +
+  geom_histogram( binwidth=3, fill="#69b3a2", color="#e9ecef", alpha=0.9) +
+    ggtitle("Age Analysis Histogram") +
+    theme_ipsum() +
+    theme(
+      plot.title = element_text(size=15)
+    )
+age_histogram
+```
+
+
+#### Graph 2 shows the relation between fasting blood sugar and heart disease. Those who do not have a fasting blood sugar tend to have heart disease than those who have fasted.
+
+```{r}
+# Age and Chest Pain Type histogram
+
+barplot <- heart %>% 
+  ggplot(aes(x = Fasting_Blood_Sugar, fill = Target)) + 
+    geom_bar()  +
+    ggtitle("Fasting Blood Sugar in Relation to Heart Disease Histogram") +
+    xlab("Fasting Blood Sugar") + 
+    ylab("Count") +
+    theme_ipsum() +
+    theme(legend.position="right") 
+barplot
+```
+
+#### Graph 3 shows the distribution of heart disease by gender based on chest pain type. From this we see that men have the highest count on chest pain type compared to females. Therefore, men are more likely to be targets of having heart disease.
+
+```{r}
+# side by side bar plot
+plot <- heart %>% 
+  ggplot(aes(x= Chest_Pain_Type,fill= Target)) +
+    theme_bw() +
+    geom_bar() +
+    facet_wrap(~Gender) +
+    labs(x = "Chest Pain Type",
+         y = "Count",
+       title = "Distribution of Target by Gender based on Chest Pain Type")
+plot
+```
+
+
+#### Lastly, graph 4 is a scatterplot between resting blood pressure and cholesterol.There is a positive relationship between both of these values as the linear regression line moves slightly upward from left to right.
+
+```{r}
+# Blood Pressure and Cholesterol scatter plot
+
+scatterplot <- heart %>% 
+  ggplot(aes(x = Resting_Blood_Pressure, y = Cholesterol)) +
+  geom_point(color = "#69b3a2") +
+  geom_smooth(method = lm , color="red", se = FALSE) +
+  theme_ipsum()
+scatterplot
+```
+
+
+
+### Conclusion: 
+
+#### There are plenty of factors that play into heart disease. For males, the risk is much higher than for females, but still equally as dangerous for both groups. 
+
