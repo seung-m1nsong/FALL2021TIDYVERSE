@@ -297,6 +297,9 @@ https://github.com/nolivercuny/FALL2021TIDYVERSE/blob/main/nick_oliver_purrr.rmd
 
 Revision/Addition Description and Link:
 
+* Extension added by Leticia S.
+* Added scatterplots and modified the boxplot with labels to x and y axis, title and legend.
+* https://github.com/letisalba/FALL2021TIDYVERSE/blob/main/nick_oliver_purrr_EXTENDED.Rmd
 
 # Nnaemeka O
 Initial Description and Link:
