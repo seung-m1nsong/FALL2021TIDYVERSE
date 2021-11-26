@@ -174,6 +174,8 @@ Initial Description and Link:
 
 
 Revision/Addition Description and Link:
+This is an extension of Tom Buonora's NYC Traffic Accidents analysis. It extends the dplyr tool functions and maps data using Leaflet. The additional lines of coding are in lines 74 - 102.
+'https://github.com/acatlin/FALL2021TIDYVERSE.git
 
 
 # Krutika P
