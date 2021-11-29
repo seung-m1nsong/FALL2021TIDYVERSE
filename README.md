@@ -244,6 +244,9 @@ Revision/Addition Description and Link:
 # Leticia S
 Initial Description and Link:
 
+* Demonstrates how to use `dplyr`, `tidyr`, and `ggplot2` to explore in a simple and qucik way a kaggle dataset called heart.csv. 
+* https://github.com/letisalba/Data-607/tree/main/Tidyverse
+
 
 Revision/Addition Description and Link:
 
@@ -295,6 +298,9 @@ https://github.com/nolivercuny/FALL2021TIDYVERSE/blob/main/nick_oliver_purrr.rmd
 
 Revision/Addition Description and Link:
 
+* Extension added by Leticia S.
+* Added scatterplots and modified the boxplot with labels to x and y axis, title and legend.
+* https://github.com/letisalba/FALL2021TIDYVERSE/blob/main/nick_oliver_purrr_EXTENDED.Rmd
 
 # Nnaemeka O
 Initial Description and Link:
