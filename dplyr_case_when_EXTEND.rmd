@@ -1,6 +1,6 @@
 ---
 title: "tidyverse: using case_when and str_replace for variable derivation"
-author: "William Aiken"
+author: "William Aiken" and "Catherine Cho"
 date: "10/24/2021"
 output:
   html_document: default
@@ -213,4 +213,23 @@ temp3 %>%
 
 ```
 
+Dplyr Extended: Catherine Cho
+
+This vignette is extended to demonstrate the use of function summarize() in dplyr. This is a useful function to count up the different values in a column. 
+
+```{r}
+temp%>%
+  group_by(choco_composite)%>%
+  summarize(n())
+```
+
+Additionally, the group_by() function can be used to perform built-in statistical functions like mean() to per defined group. The summarize function will collapse each group into a single row  summary of the results. 
+
+```{r}
+
+temp%>%
+  group_by(choco_composite)%>%
+  summarize(mean_win=mean(win_percent,na.rm=TRUE))
+
+```
 
