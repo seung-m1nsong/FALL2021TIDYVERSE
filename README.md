@@ -237,6 +237,10 @@ Revision/Addition Description and Link:
 # Krutika P
 Initial Description and Link:
 
+Using Presidential approval polls to create a vignette for a Stacked Bar Graph.
+
+https://github.com/Patel-Krutika/FALL2021TIDYVERSE/blob/main/Tidyverse_Stacked_Bar_Graph.Rmd
+https://rpubs.com/krutikap/826429
 
 Revision/Addition Description and Link:
 
@@ -331,6 +335,8 @@ Initial Description and Link:
 
 
 Revision/Addition Description and Link:
+
+
 
 
 # Preston P
