@@ -205,7 +205,7 @@ Revision/Addition Description and Link:
 Initial Description and Link:
 
 * Demonstrate how work with date and time data with Lubridate.
-* https://github.com/acatlin/FALL2021TIDYVERSE/blob/main/lubridate.rmd
+* https://github.com/acatlin/FALL2021TIDYVERSE/blob/main/lubridate.Rmd
 
 Revision/Addition Description and Link:
 
