@@ -407,6 +407,8 @@ https://rpubs.com/BigApple/826382
 
 Revision/Addition Description and Link:
 
+https://github.com/TheReallyBigApple/FALL2021TIDYVERSE/blob/main/TidyverseExtend.Rmd
+
 
 # Trang D
 Initial Description and Link:
