@@ -338,7 +338,8 @@ Initial Description and Link:
 
 Revision/Addition Description and Link:
 
-
+* Added plots to Chinedu's code
+* https://github.com/peterphung2043/DATA-607---Tidyverse-EXTEND-Assignment/blob/main/Phung_Onyeka_Extend.Rmd
 
 
 # Preston P
