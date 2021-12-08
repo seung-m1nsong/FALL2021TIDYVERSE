@@ -319,7 +319,8 @@ Vignette That Demonstrates the functions in TidyVerse
 
 
 Revision/Addition Description and Link:
-
++ Github: https://github.com/nnaemeka-git/FALL2021TIDYVERSE/blob/main/TidyextendCharles.Rmd
++ rpub: https://rpubs.com/nnaemeka/extendvignette
 
 # Noah C
 Initial Description and Link:
